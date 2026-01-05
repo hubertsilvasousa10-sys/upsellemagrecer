@@ -1,5 +1,4 @@
-
-import React, { useEffect, useCallback } from 'react';
+import React from 'react';
 import { 
   CheckCircle, 
   ChevronRight, 
@@ -15,30 +14,14 @@ import {
 } from 'lucide-react';
 
 const App: React.FC = () => {
-  useEffect(() => {
-    const handleScroll = () => {};
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const executeRefusal = useCallback(() => {
-    alert("Você será redirecionado para a área de membros do seu guia inicial.");
-  }, []);
-
-  const executePurchase = useCallback(() => {
-    window.location.href = "https://www.ggcheckout.com/checkout/v2/ZYW4vPNTEv6bI6yEPUgR";
-  }, []);
-
   const handleRefusal = (e: React.MouseEvent) => {
     e.preventDefault();
-    e.stopPropagation();
-    executeRefusal();
+    alert("Você será redirecionado para a área de membros do seu guia inicial.");
   };
 
   const handlePurchase = (e: React.MouseEvent) => {
     e.preventDefault();
-    e.stopPropagation();
-    executePurchase();
+    window.location.href = "https://www.ggcheckout.com/checkout/v2/ZYW4vPNTEv6bI6yEPUgR";
   };
 
   return (
