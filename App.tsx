@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { 
   CheckCircle, 
   ChevronRight, 
@@ -11,30 +11,23 @@ import {
   AlertCircle,
   TrendingUp,
   Target,
-  Clock,
   ArrowRight
 } from 'lucide-react';
 
 const App: React.FC = () => {
   useEffect(() => {
-    // Listener de scroll para possíveis animações futuras, 
-    // mantido de forma limpa para não gerar erros de build.
     const handleScroll = () => {};
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handlers purificados: Não aceitam argumentos para evitar que o React Event 
-  // (que possui referências circulares) seja passado para funções de rastreamento ou alert.
-  const executeRefusal = () => {
-    // Link de redirecionamento para quem recusa (opcional, aqui mantido como aviso)
+  const executeRefusal = useCallback(() => {
     alert("Você será redirecionado para a área de membros do seu guia inicial.");
-  };
+  }, []);
 
-  const executePurchase = () => {
-    // Redirecionamento direto para o checkout oficial fornecido
+  const executePurchase = useCallback(() => {
     window.location.href = "https://www.ggcheckout.com/checkout/v2/ZYW4vPNTEv6bI6yEPUgR";
-  };
+  }, []);
 
   const handleRefusal = (e: React.MouseEvent) => {
     e.preventDefault();
